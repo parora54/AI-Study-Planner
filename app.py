@@ -1,10 +1,15 @@
 import streamlit as st
+import pandas as pd
 from agent import llm, template
 
 st.title('Welcome to the APP')
-work = st.text_area('Enter work that needs to be completed as well as its estimated time needed to complete')
 time = st.slider(label='Enter total time available for studying per day (hours)', min_value=1.0, max_value=9.0, value=4.0, step=0.5)
 day = st.slider('Enter total days available to study', min_value=1, max_value=100, value=7, step=1)
+
+df = pd.Dataframe(columns=['Work','Priority',"Number of Hours Required"])
+
+st.write('Enter work that needs to be completed as well as its estimated time needed to complete')
+work = st.data_editor(df, column_config={"Priority": st.column_config.NumberColumn("Priority Level (1-5)", min_value=1, max_value=5, step=1)}, hide_index=True)
 
 button = st.button('Generate Study Plan')
 
