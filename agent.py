@@ -3,7 +3,7 @@ import streamlit as st
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate, FewShotChatMessagePromptTemplate
 
-os.environ["OPENAI_API_KEY"] = st.secrets("OPENAI_API_KEY")
+os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
 llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.0)
 
