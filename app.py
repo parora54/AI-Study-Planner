@@ -11,7 +11,8 @@ button = st.button('Generate Study Plan')
 if button:
     if work and time and day:
         formatted_prompt = template.format_messages(work=work, time=time, day=day)
-        result = llm.invoke(formatted_prompt)
+        with st.spinner("Crafting your ultimate study plan..."):
+            result = llm.invoke(formatted_prompt)
         st.write(result.content)
     else:
         st.write('ERROR: COMPLETE ALL FIELDS')
