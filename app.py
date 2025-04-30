@@ -9,7 +9,7 @@ day = st.slider('Enter total days available to study', min_value=1, max_value=10
 df = pd.DataFrame(columns=['Work','Priority',"Number of Hours Required"])
 
 st.write('Enter work that needs to be completed as well as its estimated time needed to complete')
-work = st.data_editor(df, column_config={"Priority": st.column_config.NumberColumn("Priority Level (1-5)", min_value=1, max_value=5, step=1)}, hide_index=True)
+work = st.data_editor(df, column_config={"Priority": st.column_config.NumberColumn("Priority Level (1-5)", min_value=1, max_value=5, step=1)}, hide_index=True, num_rows="dynamic")
 
 button = st.button('Generate Study Plan')
 
