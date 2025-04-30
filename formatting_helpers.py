@@ -15,13 +15,13 @@ def convert_df_to_text(df):
     return str("\n---\n".join(lines))
 
 def study_plan_to_txt(plan_dict):
-    study_text = ""
-    
+    txt = "📚 Your Study Plan\n\n"
     for day, tasks in plan_dict.items():
-        study_text += f"{day}:\n"
+        txt += f"{day}:\n"
         if tasks:
             for task in tasks:
-                study_text += f"  - {task['task_name']} – {task['hours']} hours (Priority {task['priority']})\n"
+                txt += f"  - {task['task_name']} – {task['hours']} hrs (Priority {task['priority']})\n"
         else:
-            study_text += "  ✅ No tasks assigned. Free day!\n"
-        study_text += "\n"
+            txt += "  ✅ No tasks assigned. Free day!\n"
+        txt += "\n"
+    return txt
