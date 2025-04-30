@@ -21,6 +21,10 @@ template = ChatPromptTemplate.from_messages(
         ⚠️ Only assign the number of hours specified for each task — do not create extra study hours just because the user has more time available.
         Use clear headings and bullet points for each day."""
         ),
-        ("user", "This is the work I have to do: {work}. This is the total amount of time I have to complete things per day: {time}. This is the total amount of days I have to complete the tasks: {day}. Write me a day by day study plan based on these parameters."),
+        ("user", 
+        "This is the work I have to do: {work} \nI have {time} hours per day for studying, and {day} total days. \
+        Each task includes the number of hours required to complete it. Please create a day-by-day study plan \
+        that allocates *only* the total hours needed to complete these tasks, without adding unnecessary extra study time. \
+        If there's leftover time in a day, leave it blank or state 'free time'."),
     ]
 )

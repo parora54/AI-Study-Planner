@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from agent import llm, template
+import datetime as dt
 
 st.markdown('# PLAN YOUR STUDY SCHEDULE')
 
@@ -40,6 +41,7 @@ if button:
         formatted_prompt = template.format_messages(work=convert_df_to_text(work), time=time, day=day)
         with st.spinner("Crafting your ultimate study plan..."):
             result = llm.invoke(formatted_prompt)
+        st.download_button('Download this Study Plan', result.content, file_name=f'study_plan_{dt.date.today().strftime("%m%d%Y")}.pdf')
         st.write(result.content)
     else:
         st.write('ERROR: COMPLETE ALL FIELDS')
