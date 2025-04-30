@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from agent import llm, template
-from formatting_helpers import convert_df_to_text
+from formatting_helpers import convert_df_to_text, html_to_pdf_bytes, study_plan_to_html
 import datetime as dt
 import json
 
@@ -34,7 +34,7 @@ if button:
 
         # FIXME: change this output format
         st.subheader("🗓️ Your Study Plan")
-        
+
         # Parse GPT response as JSON
         try:
             content = json.loads(result.content)
@@ -42,6 +42,17 @@ if button:
             st.error("GPT did not return valid JSON. Please try again.")
             st.text(result.content)
             st.stop()
+
+        # Download Output for users
+        html_str = study_plan_to_html(content)
+        pdf_data = html_to_pdf_bytes(html_str)
+
+        st.download_button(
+            label="Download Study Plan (PDF)",
+            data=pdf_data,
+            file_name=f"study_plan_{dt.date.today().strftime('%m%d%Y')}.pdf",
+            mime="application/pdf"
+        )
 
         # Display output into expander cards
         for day, tasks in content.items():
@@ -54,8 +65,5 @@ if button:
                 else:
                     st.markdown("_No tasks assigned. ✅ Enjoy your free time!_")
             
-        # Download Output
-        st.download_button('Download this Study Plan', result.content, file_name=f'study_plan_{dt.date.today().strftime("%m%d%Y")}.pdf')
-        
     else:
         st.write('ERROR: COMPLETE ALL FIELDS')
