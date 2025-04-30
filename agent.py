@@ -22,32 +22,7 @@ template = ChatPromptTemplate.from_messages(
         Use clear headings and bullet points for each day."""
         ),
         ("user",
-        """This is the work I have to do: {work}\n"
-        "I have {time} hours per day and {day} total days.\n"
-        "Each task includes a number of hours required and a priority.\n"
-        "**Please return ONLY A JSON OBJECT** where each key is a day (e.g., 'Day 1'), and its value is a list of tasks. For example: {
-  "Day 1": [
-    {
-      "task_name": "hello",
-      "hours": 4,
-      "priority": 1
-    }
-  ],
-  "Day 2": [
-    {
-      "task_name": "hello",
-      "hours": 1,
-      "priority": 1
-    }
-  ],
-  "Day 3": [],
-  "Day 4": [],
-  "Day 5": [],
-  "Day 6": [],
-  "Day 7": []
-}\n"
-        "Each task should include: task name, number of hours, and priority.\n"
-        "Do NOT allocate more hours than required. If extra time exists, just leave it unused."""
+        "This is the work I have to do: {work}\nI have {time} hours per day and {day} total days.\nEach task includes a number of hours required and a priority.\n**Please return ONLY A JSON OBJECT** where each key is a day (e.g., 'Day 1'), and its value is a list of tasks. For example: \nEach task should include: task name, number of hours, and priority.\nDo NOT allocate more hours than required. If extra time exists, just leave it unused."
         ),
     ]
 )
