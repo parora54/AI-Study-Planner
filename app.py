@@ -31,6 +31,8 @@ if button:
         with st.spinner("Crafting your ultimate study plan..."):
             result = llm.invoke(formatted_prompt)
         st.download_button('Download this Study Plan', result.content, file_name=f'study_plan_{dt.date.today().strftime("%m%d%Y")}.pdf')
-        st.write(result.content)
+        
+        # FIXME: change this output format
+        st.json(result.content)
     else:
         st.write('ERROR: COMPLETE ALL FIELDS')
