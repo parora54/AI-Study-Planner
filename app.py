@@ -30,9 +30,13 @@ if button:
         formatted_prompt = template.format_messages(work=convert_df_to_text(work), time=time, day=day)
         with st.spinner("Crafting your ultimate study plan..."):
             result = llm.invoke(formatted_prompt)
+
+        # FIXME: change this output format
+        st.subheader("🗓️ Your Study Plan")
+        st.json(result.content)
+            
+        # Download Output
         st.download_button('Download this Study Plan', result.content, file_name=f'study_plan_{dt.date.today().strftime("%m%d%Y")}.pdf')
         
-        # FIXME: change this output format
-        st.json(result.content)
     else:
         st.write('ERROR: COMPLETE ALL FIELDS')
