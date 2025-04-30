@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from agent import llm, template
+from formatting_helpers import convert_df_to_text
 import datetime as dt
 
 st.markdown('# PLAN YOUR STUDY SCHEDULE')
@@ -21,18 +22,6 @@ work = st.data_editor(
     hide_index=True,
     num_rows="dynamic"
 )
-
-def convert_df_to_text(df):
-    '''
-    Takes dataframe and turns it into neat formatted string for llm
-    '''
-    lines = []
-    for _, row in df.iterrows():
-        lines.append(
-            f"Task: {row['Work']}\nPriority: {row['Priority']}\nHours Required: {row['Number of Hours Required']}\n"
-        )
-    return "\n---\n".join(lines)
-
 
 # Generate Study Plan
 button = st.button('Generate Study Plan')
