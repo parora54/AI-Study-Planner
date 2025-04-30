@@ -26,13 +26,13 @@ Your job is to:
 - Leave any unused hours blank (do not assign extra work)
 
 Respond in the following JSON format:
-{
+
   "Day 1": [
-    { "task_name": "Review Math Notes", "hours": 2, "priority": 1 },
-    { "task_name": "Watch Chemistry Lecture", "hours": 1.5, "priority": 3 }
+     "task_name": "Review Math Notes", "hours": 2, "priority": 1 ,
+     "task_name": "Watch Chemistry Lecture", "hours": 1.5, "priority": 3 
   ],
   "Day 2": []
-}
+
 """
         ),
         ("user",
