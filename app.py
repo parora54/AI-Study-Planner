@@ -3,16 +3,26 @@ import pandas as pd
 from agent import llm, template
 
 st.title('Welcome to the APP')
+
+# Configuration of time adjustment for study plan
 time = st.slider(label='Enter total time available for studying per day (hours)', min_value=1.0, max_value=9.0, value=4.0, step=0.5)
 day = st.slider('Enter total days available to study', min_value=1, max_value=100, value=7, step=1)
 
+# Area for user to enter their work
 df = pd.DataFrame(columns=['Work','Priority',"Number of Hours Required"])
-
 st.write('Enter work that needs to be completed as well as its estimated time needed to complete')
-work = st.data_editor(df, column_config={"Priority": st.column_config.NumberColumn("Priority Level (1-5)", min_value=1, max_value=5, step=1)}, hide_index=True, num_rows="dynamic")
+work = st.data_editor(
+    df, 
+    column_config={
+        "Priority": st.column_config.NumberColumn("Priority Level (1-5)", min_value=1, max_value=5, step=1),
+        "Number of Hours Required": st.column_config.NumberColumn("Number of Hours Required", min_value=0.5, max_value=100, step=0.5)
+    }, 
+    hide_index=True,
+    num_rows="dynamic"
+)
 
+# Generate Study Plan
 button = st.button('Generate Study Plan')
-
 if button:
     if work and time and day:
         formatted_prompt = template.format_messages(work=work, time=time, day=day)
