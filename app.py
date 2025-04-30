@@ -3,6 +3,7 @@ import pandas as pd
 from agent import llm, template
 from formatting_helpers import convert_df_to_text
 import datetime as dt
+import json
 
 st.markdown('# PLAN YOUR STUDY SCHEDULE')
 
@@ -33,7 +34,25 @@ if button:
 
         # FIXME: change this output format
         st.subheader("🗓️ Your Study Plan")
-        st.write(result.content)
+        
+        # Parse GPT response as JSON
+        try:
+            content = json.loads(result.content)
+        except json.JSONDecodeError:
+            st.error("GPT did not return valid JSON. Please try again.")
+            st.text(result.content)
+            st.stop()
+
+        # Display output into expander cards
+        for day, tasks in content.items():
+            with st.expander(f"📅 {day}", expanded=True):
+                if tasks:
+                    for task in tasks:
+                        st.markdown(
+                            f"- **{task['task_name']}** – {task['hours']} hours (Priority {task['priority']})"
+                        )
+                else:
+                    st.markdown("_No tasks assigned. ✅ Enjoy your free time!_")
             
         # Download Output
         st.download_button('Download this Study Plan', result.content, file_name=f'study_plan_{dt.date.today().strftime("%m%d%Y")}.pdf')

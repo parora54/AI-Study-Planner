@@ -13,6 +13,3 @@ def convert_df_to_text(df):
         )
         lines.append(task_line)
     return str("\n---\n".join(lines))
-
-def convert_json_to_output(json_output):
-    content = json.loads(json_output)
