@@ -12,7 +12,7 @@ def convert_df_to_text(df):
             f"Priority: {row['Priority']}\n"
         )
         lines.append(task_line)
-    return "\n---\n".join(lines)
+    return str("\n---\n".join(lines))
 
 def convert_json_to_output(json_output):
     content = json.loads(json_output)
