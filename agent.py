@@ -18,6 +18,7 @@ template = ChatPromptTemplate.from_messages(
         - Make sure high-priority and time-sensitive tasks are allocated first
         - Balance the plan so it's realistic and evenly distributed
         - Return a day-by-day plan with what to do each day and for how long.
+        ⚠️ Only assign the number of hours specified for each task — do not create extra study hours just because the user has more time available.
         Use clear headings and bullet points for each day."""
         ),
         ("user", "This is the work I have to do: {work}. This is the total amount of time I have to complete things per day: {time}. This is the total amount of days I have to complete the tasks: {day}. Write me a day by day study plan based on these parameters."),
