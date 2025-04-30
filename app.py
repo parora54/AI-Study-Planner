@@ -33,7 +33,7 @@ if button:
 
         # FIXME: change this output format
         st.subheader("🗓️ Your Study Plan")
-        st.json(result.content)
+        st.write(result.content)
             
         # Download Output
         st.download_button('Download this Study Plan', result.content, file_name=f'study_plan_{dt.date.today().strftime("%m%d%Y")}.pdf')
