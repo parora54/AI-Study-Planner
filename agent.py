@@ -11,7 +11,7 @@ template = ChatPromptTemplate.from_messages(
     [
         ("system", 
         """You are an intelligent study planning agent.
-        The user will give you a list of tasks, each with an estimated duration and a priority level (1 to 5, where 5 is highest).
+        The user will give you a list of tasks, each with an estimated duration and a priority level (1 to 5, where 1 is highest).
         Your job is to:
         - Prioritize tasks based on urgency and importance
         - Distribute the total available study time each day across the tasks
