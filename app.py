@@ -30,9 +30,7 @@ if button:
     if not work.empty:
         formatted_prompt = template.format_messages(work=convert_df_to_text(work), time=time, day=day)
         with st.spinner("Crafting your ultimate study plan..."):
-            chain = formatted_prompt | llm
-            
-            result = chain.invoke()
+            result = llm.invoke(formatted_prompt)
 
         st.subheader("🗓️ Your Study Plan")
 
