@@ -36,7 +36,7 @@ def convert_df_to_text(df):
 # Generate Study Plan
 button = st.button('Generate Study Plan')
 if button:
-    if work and time and day:
+    if not work.empty and time and day:
         formatted_prompt = template.format_messages(work=convert_df_to_text(work), time=time, day=day)
         with st.spinner("Crafting your ultimate study plan..."):
             result = llm.invoke(formatted_prompt)
